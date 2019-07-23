@@ -1,9 +1,11 @@
 const Atelier = require('../../models/Atelier.model');
+const UserCuisiner = require('../../models/User')
 const fs = require('fs')
 
 //Create new Article
 exports.create = (req, res) => {
-    Atelier.find()
+    UserCuisiner.findById(req.params.id).then(use =>{
+        Atelier.find()
         .then(user => {
             var id;
             if (user.length == 0) {
@@ -22,8 +24,8 @@ exports.create = (req, res) => {
             });
             const atelier = new Atelier({
                 _id: id,
+                id2:use.id,
                 titre: req.body.titre,
-                utilisateur: req.body.utilisateur,
                 prix: req.body.prix,
                 description: req.body.description,
                 image:nomImage + '.jpg',
@@ -43,6 +45,8 @@ exports.create = (req, res) => {
                     });
                 });
         })
+    })
+    
 };
 
 //Get un par un image

@@ -1,0 +1,46 @@
+import React, { Component } from 'react';
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse } from "mdbreact";
+
+export default class Menu extends Component {
+    state = {
+        modal1: false,
+        modal2: false,
+        modal3: false,
+        modal4: false,
+        modal5: false,
+        collapseID: "",
+        redirect: false
+    }
+    toggleCollapse = collapseID => () => this.setState(prevState => ({
+        collapseID: prevState.collapseID !== collapseID ? collapseID : ""
+    }));
+
+    toggle = nr => () => {
+        let modalNumber = "modal" + nr; this.setState({
+            [modalNumber]: !this.state[modalNumber]
+        });
+    }
+    render() {
+        return (
+            <div>
+                <MDBNavbar color="#d05c62" dark expand="md" style={{ marginTop: "20px" }} id="navbar">
+                    <MDBNavbarBrand>
+                        <img src="public/logo.png" alt="logo"/>
+                    </MDBNavbarBrand>
+                    <MDBNavbarToggler onClick={this.toggleCollapse("navbarCollapse3")} />
+                    <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
+                        <MDBNavbarNav left> <MDBNavItem > <MDBNavLink to="#!" className="nav-header">Accueil</MDBNavLink> </MDBNavItem>
+                            <MDBNavItem> <MDBNavLink to="/tousLesAteliers" className="nav-header">Liste</MDBNavLink>
+                            </MDBNavItem> <MDBNavItem> <MDBNavLink to="#!" className="nav-header">Contacts</MDBNavLink> </MDBNavItem>
+                        </MDBNavbarNav>
+                        <MDBNavbarNav right>
+                            <MDBNavItem>
+                                <MDBNavLink to="/login" className="nav-header" rounded onClick={this.toggle(1)}>Connexion</MDBNavLink>
+                            </MDBNavItem>
+                        </MDBNavbarNav>
+                    </MDBCollapse>
+                </MDBNavbar>
+            </div>
+        );
+    }
+}
