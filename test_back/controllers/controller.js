@@ -12,6 +12,7 @@ const validateLoginInput = require("../validation/login");
 const User = require("../models/User");
 
 exports.register = (req, res) => {
+  
     const { errors, isValid } = validateRegisterInput(req.body);
 
   // Check validation
@@ -23,7 +24,16 @@ exports.register = (req, res) => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
     } else {
+      User.find()
+        .then(user => {
+            var id;
+            if (user.length == 0) {
+                id = 0
+            } else {
+                id = parseInt(user[user.length - 1]._id) + 1
+            }
       const newUser = new User({
+        _id:id,
         nom: req.body.nom,
         prenom: req.body.prenom,
         specialite: req.body.specialite,
@@ -42,8 +52,10 @@ exports.register = (req, res) => {
             .catch(err => console.log(err));
         });
       });
+      })
     }
   });
+
 };
 exports.login = (req,res) =>{
     const { errors, isValid } = validateLoginInput(req.body);

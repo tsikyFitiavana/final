@@ -47,6 +47,8 @@ class Login extends Component {
     };
 
     this.props.loginUser(userData);
+    localStorage.setItem('rememberMe', userData.email);
+    console.log("zan n email zanu"+userData.email)
   };
 
   render() {
