@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
-
+import './login.css';
 class Register extends Component {
   constructor() {
     super();
@@ -60,20 +60,14 @@ class Register extends Component {
 
     return (
       <div className="container">
-        <div className="row">
-          <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
-            </Link>
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-              <h4>
-                <b>Register</b> below
-              </h4>
-              <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log in</Link>
+        <div id="feedback-form">
+          <h2 class="header">Crée compte</h2>
+          <Link to="/" className="btn-flat waves-effect">
+               <i className="material-icons left">keyboard_backspace</i>Accueil</Link>
+          <p className="grey-text text-darken-1">
+                Membre ? <Link to="/login">Connecter</Link>
               </p>
-            </div>
+          <div>
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
                 <input
@@ -168,15 +162,15 @@ class Register extends Component {
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
+                    width: "19.35vh",
+                    borderRadius: "0.387vh",
+                    letterSpacing: "0.193",
                     marginTop: "1rem"
                   }}
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
-                  Sign up
+                  Crée 
                 </button>
               </div>
             </form>

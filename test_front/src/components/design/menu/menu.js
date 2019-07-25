@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './menu.css'
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse } from "mdbreact";
 
 export default class Menu extends Component {
@@ -23,15 +24,24 @@ export default class Menu extends Component {
     render() {
         return (
             <div>
-                <MDBNavbar color="#d05c62" dark expand="md" style={{ marginTop: "20px" }} id="navbar">
+                <MDBNavbar color="#d05c62" dark expand="md" id="navbar">
                     <MDBNavbarBrand>
-                        <img src="public/logo.png" alt="logo"/>
+                        <div id="contentlogo"><img src="logo.png" alt="logo" id="logo" /></div>
+                        
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse("navbarCollapse3")} />
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
-                        <MDBNavbarNav left> <MDBNavItem > <MDBNavLink to="#!" className="nav-header">Accueil</MDBNavLink> </MDBNavItem>
-                            <MDBNavItem> <MDBNavLink to="/tousLesAteliers" className="nav-header">Liste</MDBNavLink>
-                            </MDBNavItem> <MDBNavItem> <MDBNavLink to="#!" className="nav-header">Contacts</MDBNavLink> </MDBNavItem>
+                        <MDBNavbarNav left>
+                            
+                            <MDBNavItem >
+                                <MDBNavLink to="/" className="nav-header">Accueil</MDBNavLink>
+                            </MDBNavItem>
+                            <MDBNavItem>
+                                <MDBNavLink to="/tousLesAteliers" className="nav-header">Liste</MDBNavLink>
+                            </MDBNavItem>
+                            <MDBNavItem>
+                                <MDBNavLink to="#!" className="nav-header">Contacts</MDBNavLink>
+                            </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
                             <MDBNavItem>

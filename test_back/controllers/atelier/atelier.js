@@ -1,10 +1,9 @@
 const Atelier = require('../../models/Atelier.model');
-const UserCuisiner = require('../../models/User')
+// const UserCuisiner = require('../../models/User')
 const fs = require('fs')
 
 //Create new Article
 exports.create = (req, res) => {
-    UserCuisiner.findById(req.params.id).then(use =>{
         Atelier.find()
         .then(user => {
             var id;
@@ -24,7 +23,7 @@ exports.create = (req, res) => {
             });
             const atelier = new Atelier({
                 _id: id,
-                id2:use.id,
+                idUser:req.body.idUser,
                 titre: req.body.titre,
                 prix: req.body.prix,
                 description: req.body.description,
@@ -45,7 +44,6 @@ exports.create = (req, res) => {
                     });
                 });
         })
-    })
     
 };
 
@@ -74,12 +72,12 @@ exports.findAllArticle = (req, res) => {
 
 // Find a single article with a articleID
 exports.findOne = (req, res) => {
-    Atelier.findById(req.params.profilId)
+    Atelier.find({idUser:req.params.idUser})
         .then(profilchoix => {
             //console.log(unprofil)
             if (!profilchoix) {
                 return res.status(404).send({
-                    message: "profil not found with id" + req.params.profilId
+                    message: "profil not found with id" + req.params.idUser
                 });
             }
             else {
@@ -90,11 +88,64 @@ exports.findOne = (req, res) => {
         }).catch(err => {
             if (err.kind === 'ObjectId') {
                 return res.status(404).send({
-                    message: "profil not found with id " + req.params.profilId
+                    message: "profil not found with id " + req.params.idUser
                 });
             }
             return res.status(500).send({
-                message: "Something wrong retrieving profil with id " + req.params.profilId
+                message: "Something wrong retrieving profil with id " + req.params.idUser
             });
         });
+};
+
+//update
+
+exports.update = (req, res) => {
+    // Validate Request()
+    console.log('ity ny requete'+req.body.nom)
+    if(!req.body.titre || !req.body.description) {
+        return res.status(400).send({
+            message: "eleve content can not be empty"
+        });
+    }
+    console.log('ity n params'+req.params.profilId)
+    let imageFile = req.files.image;
+        //console.log('inona ny ato o!'+imageFile)
+        let nomImage = req.params.profilId
+        res.setHeader('Content-Type', 'text/plain');
+
+        imageFile.mv(`${__dirname}/public/${nomImage }.jpg`, function(err) {
+          if (err) {
+            return res.status(500).send(err);
+          }
+        });
+        console.log('tonga eto v nw')
+    // Find and update eleve with the request body
+    Atelier.findByIdAndUpdate(req.params.profilId, {
+                titre: req.body.titre,
+                idUser:req.body.idUser,
+                prix: req.body.prix,
+                description: req.body.description,
+                image:nomImage + '.jpg',
+                duree: req.body.duree,
+                debut: req.body.debut,
+                place: req.body.place
+        
+    }, {new: true})
+    .then(user => {
+        if(!user) {
+            return res.status(404).send({
+                message: "eleve not found with id " + req.params.profilId
+            });
+        }
+        res.send(user);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "eleve not found with id " + req.params.profilId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong updating note with id " + req.params.profilId
+        });
+    });
 };
