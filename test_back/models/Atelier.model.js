@@ -10,7 +10,7 @@ const ArticleSchema = new Schema({
         default: Date.now },
     debut: { type: String, required: true },
     duree: { type: String, required: true },
-    id2: Number,
+    idUser: Number,
     image: { type: String, required: true },
     prix: Number,
     place:Number

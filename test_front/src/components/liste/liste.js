@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 
 export default class ListTout extends Component {
@@ -14,6 +15,8 @@ export default class ListTout extends Component {
             .then(response => {
                 console.log('i am a response', response)
                 this.setState({ produit: response.data });
+                console.log('i am a produit', this.state.produit)
+                localStorage.setItem('loc', response.data[1].place)
             })
             .catch(function (error) {
                 console.log(error);
@@ -25,46 +28,58 @@ export default class ListTout extends Component {
 
     liste() {
         return <div>
-            <div className="table-responsive">
+            <div className="container-fluid">
 
                 {
                     (this.state.produit.length > 0) ? (this.state.produit.map((obj) => {
-                        return <div >
+                        return <div className="container-fluid">
                             <div id="ligne" className="row" key={obj._id}>
-                                <div className="col-md-1"></div>
-                                <div className="col-md-6">
-                                    <img width="400px" height="450" src={'http://localhost:8080/api/users/newArticle/' + obj.image} alt="pdp" />
+                                <div className="container">
+                                    <img className="img-fluid " id="mgList"
+                                        src={'http://localhost:8080/api/users/newArticleImage/' + obj.image}
+                                        alt="pdp" />
                                 </div>
-                                <div className="col-md-2">
-                                    <div className="row">
-                                        <div className="container-fluid">
-                                            <h2>
-                                                {obj.titre}
-                                            </h2>
-                                            <p><strong>{obj.prix}</strong></p>
+                                <div className="container">
+                                    <div className="container-fluid">
+                                        <div className="row">
+                                            <div className="container-fluid">
+                                                <ul>
+                                                    <li><h2>{obj.titre}</h2></li>
+                                                    <li>
+                                                        <ul>
+                                                            <li>Prix: {obj.prix} Ar</li>
+                                                            <li>Durée : {obj.duree}</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                
+                                            </div>
+                                            <div className="container-fluid">
+                                                <div className="container-fluid">
+                                                    <h3><u>Descriptions</u> :</h3>
+                                                    <p>{obj.description}</p>
+                                                </div>
+                                                    
+                                                    <h5>Date de Publication :</h5>
+                                                    <p>{obj.date}</p>
+                                            </div>
+
                                         </div>
                                         <div className="container-fluid">
-                                            <div className="row">
-                                                <div className="col-xs-6">
-                                                    <button><span className=" glyphicon glyphicon-shopping-cart "></span>S'inscrire</button>
-                                                </div>
-                                                <div className="col-xs-6">
-                                                    <button onClick={() => {
-                                                        return (
-                                                            <div className="row">
-                                                                <div className="col-md-6">
-                                                                    <img width="400px" height="450" src={'http://localhost:8080/user/produitImage/' + obj.image} alt="pdp" />
-                                                                </div>
-                                                            </div>
-                                                        )
-                                                    }}><span className=" glyphicon glyphicon-eye-open " ></span>Voir detail</button>
-                                                </div>
+                                            <p>
+                                                Les places sont limitées à <strong>{obj.place}</strong>! <br />
+                                                Si vous êtes interessé, s'inscrire c'est obligatoire
+                                            </p>
+                                        </div>
+                                        <div className="row">
+                                            <div className="container">
+                                                <Link to="/Particulier/" className="btn btn-sm btn-great light orange">M'INSCRIRE</Link>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                                <div className="col-md-3"></div>
+
                             </div>
                         </div>
 

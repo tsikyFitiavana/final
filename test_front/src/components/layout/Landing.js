@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DemoCarousel from "../design/carousel/carousel"
+
 // import { Link } from "react-router-dom";
 
 class Landing extends Component {

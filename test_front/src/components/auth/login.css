@@ -1,0 +1,69 @@
+#feedback-form {
+  width: 64.5vh;
+  margin: 0 auto;
+  background-color: #f3671f;
+  padding: 2.58vh 6.45vh 5.16vh;
+  box-shadow: 0.129vh 0.516vh 1.29vh 0.129vh #d05c62;
+  font-family: verdana, sans-serif;
+  color: #eee;
+}
+
+#feedback-form * {
+    box-sizing: border-box;
+    margin-top: 6.45vh !important;
+    color: #eee;
+}
+
+#feedback-form h2{
+  text-align: center;
+  margin-bottom: 3.87vh;
+  color: #eee;
+}
+
+#feedback-form input {
+  margin-bottom: 1.935vh;
+  color: #eee;
+}
+
+/* #feedback-form input[type=text] {
+  display: block;
+  height: 4.128vh;
+  padding: 0.774vh 2.016vh;
+  width: 100%;
+  border: none;
+  background-color: #f3f3f3;
+  color: #eee;
+} */
+
+#feedback-form label {
+  color: #777;
+  font-size: 0.8em;
+  color: #eee;
+}
+
+#feedback-form input[type=checkbox] {
+  float: left;
+}
+
+#feedback-form input:not(:checked) + #feedback-phone {
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#feedback-form #feedback-phone {
+  transition: .3s;
+}
+
+#feedback-form button[type=submit] {
+  display: block;
+  margin: 2.58vh auto 0;
+  width: 1.206;
+  height: 5.16vh;
+  border-radius: 3.225vh;
+  border: none;
+  color: #eee;
+  font-weight: 700;
+  box-shadow: 0.129vh 0.516vh 1.29vh 0.129vh #aaa;
+  background: #d05c62 !important;
+}

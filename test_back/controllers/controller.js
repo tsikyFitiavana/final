@@ -94,6 +94,7 @@ exports.login = (req,res) =>{
           },
           (err, token) => {
             res.json({
+              id:user.id,
               success: true,
               token: "Bearer " + token
             });

@@ -1,3 +1,17 @@
 .gauche{
     padding-left: 12px;
 }
+.parent{
+    padding: 0%;
+    margin: 0%;
+}
+#MenuVertic{
+    width:300px;
+    height: 750px;
+    background-color: rgb(255, 102, 0)
+}
+#MenuHoriz{
+    width: 1800px;
+    height: 50px;
+    background-color: rgb(255, 102, 0)
+}
